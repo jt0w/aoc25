@@ -12,6 +12,7 @@ bool build_day(int day) {
   cmd = (Cmd){0};
   cmd_push(&cmd, CHIMERA_COMPILER);
   cmd_push(&cmd, "-Wall", "-Wextra", "-Wno-missing-braces", "-Wno-unused-parameter" , "-ggdb") ;
+  cmd_push(&cmd, "-lm");
   cmd_push(&cmd, temp_sprintf("src/day%d/day%d.c", day, day));
   cmd_push(&cmd, "-o", temp_sprintf(build_dir"day%d", day));
   if (!cmd_exec(&cmd))
