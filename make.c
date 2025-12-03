@@ -41,6 +41,7 @@ int main(int argc, char **argv) {
   int failed = 0;
   build_count(1);
   build_count(2);
+  build_count(3);
   if (failed > 0) {
     log(CHIMERA_ERROR, "failed %d days", failed);
     return 1;
