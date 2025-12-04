@@ -2,7 +2,6 @@
 
 #define CHIMERA_IMPLEMENTATION
 #define CHIMERA_STRIP_PREFIX
-#define CHIMERA_NO_COLOR_LOG
 #include <chimera.h>
 
 Cmd cmd = {0};
@@ -42,6 +41,7 @@ int main(int argc, char **argv) {
   build_count(1);
   build_count(2);
   build_count(3);
+  build_count(4);
   if (failed > 0) {
     log(CHIMERA_ERROR, "failed %d days", failed);
     return 1;

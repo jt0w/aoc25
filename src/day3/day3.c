@@ -24,9 +24,8 @@ uint64_t get_largest_with_contraint_and_offset(size_t remaining, size_t offset, 
   uint64_t largest = 0;
   *found_index = offset;
 
-  if (bank.count < remaining || offset > bank.count - remaining) {
+  if (bank.count < remaining || offset > bank.count - remaining)
     return 0;
-  }
 
   for (size_t i = offset; i <= bank.count - remaining; ++i){
     uint64_t num = bank.items[i] - '0';
