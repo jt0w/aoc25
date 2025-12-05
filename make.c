@@ -11,7 +11,7 @@ Cmd cmd = {0};
 bool build_day(int day) {
   cmd = (Cmd){0};
   cmd_push(&cmd, CHIMERA_COMPILER);
-  cmd_push(&cmd, "-Wall", "-Wextra", "-Wno-missing-braces","-std=c23", "-Wno-unused-parameter" , "-ggdb") ;
+  cmd_push(&cmd, "-O4","-Wall", "-Wextra", "-Wno-missing-braces","-std=c23", "-Wno-unused-parameter" , "-ggdb") ;
   cmd_push(&cmd, "-lm");
   cmd_push(&cmd, temp_sprintf("src/day%d/day%d.c", day, day));
   cmd_push(&cmd, "-o", temp_sprintf(build_dir"day%d", day));
@@ -42,6 +42,7 @@ int main(int argc, char **argv) {
   build_count(2);
   build_count(3);
   build_count(4);
+  build_count(5);
   if (failed > 0) {
     log(CHIMERA_ERROR, "failed %d days", failed);
     return 1;
