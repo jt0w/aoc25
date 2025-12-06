@@ -1,5 +1,6 @@
 .direnv/
 .ccls-cache/
 build/
-make
 inputs/
+aoc
+

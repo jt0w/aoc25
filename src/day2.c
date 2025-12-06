@@ -1,15 +1,8 @@
 // TODO: clean this mess up
-#define CHIMERA_IMPLEMENTATION
-#define CHIMERA_STRIP_PREFIX
-#define CHIMERA_NO_COLOR_LOG
-#include <chimera.h>
-#undef log
-#include <math.h>
-#include <ctype.h>
-#include <inttypes.h>
+#include "solution.h"
 
 
-bool validate_id_part1(uint64_t id) {
+bool validate_id_part1(int64_t id) {
   char id_str[1024];
   sprintf(id_str, "%"PRId64, id);
   int id_str_len = strlen(id_str);
@@ -22,18 +15,18 @@ bool validate_id_part1(uint64_t id) {
   return true;
 }
 
-uint64_t part1(StringBuilder input) {
-  uint64_t count = 0;
+int64_t solve_part1(StringBuilder input) {
+  int64_t count = 0;
   size_t i = 0;
   while (i < input.count) {
-    uint64_t range_begin = 0;
+    int64_t range_begin = 0;
     while (isdigit(input.items[i])) {
       range_begin = range_begin * 10 + input.items[i] - '0';
       ++i;
     }
     assert(input.items[i] == '-');
     ++i;
-    uint64_t range_end = 0;
+    int64_t range_end = 0;
     while (isdigit(input.items[i])) {
       range_end = range_end * 10 + input.items[i] - '0';
       ++i;
@@ -44,7 +37,7 @@ uint64_t part1(StringBuilder input) {
       exit(1);
     }
     ++i;
-    for (uint64_t id = range_begin; id <= range_end; ++id) {
+    for (int64_t id = range_begin; id <= range_end; ++id) {
       if (validate_id_part1(id) == false) {
 	count += id;
       }
@@ -54,7 +47,7 @@ uint64_t part1(StringBuilder input) {
 }
 
 
-bool validate_id_part2(uint64_t id) {
+bool validate_id_part2(int64_t id) {
   char id_str[1024];
   sprintf(id_str, "%"PRIu64, id);
   size_t id_str_len = strlen(id_str);
@@ -72,18 +65,18 @@ bool validate_id_part2(uint64_t id) {
   return true;
 }
 
-uint64_t part2(StringBuilder input) {
-  uint64_t count = 0;
+int64_t solve_part2(StringBuilder input) {
+  int64_t count = 0;
   size_t i = 0;
   while (i < input.count) {
-    uint64_t range_begin = 0;
+    int64_t range_begin = 0;
     while (isdigit(input.items[i])) {
       range_begin = range_begin * 10 + input.items[i] - '0';
       ++i;
     }
     assert(input.items[i] == '-');
     ++i;
-    uint64_t range_end = 0;
+    int64_t range_end = 0;
     while (isdigit(input.items[i])) {
       range_end = range_end * 10 + input.items[i] - '0';
       ++i;
@@ -94,18 +87,10 @@ uint64_t part2(StringBuilder input) {
       exit(1);
     }
     ++i;
-    for (uint64_t id = range_begin; id <= range_end; ++id) {
+    for (int64_t id = range_begin; id <= range_end; ++id) {
       if (validate_id_part2(id) == false)
 	count += id;
     }
   }
   return count;
-}
-
-int main() {
-  StringBuilder input = {0};
-  read_file("inputs/day2.txt", &input);
-  println("part1 => %"PRId64, part1(input));
-  println("part2 => %"PRId64, part2(input));
-  return 0;
 }

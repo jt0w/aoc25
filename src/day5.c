@@ -1,10 +1,4 @@
-#define CHIMERA_IMPLEMENTATION
-#define CHIMERA_STRIP_PREFIX
-#include <chimera.h>
-#undef log
-#include <ctype.h>
-#include <inttypes.h>
-#include <math.h>
+#include "solution.h"
 #include <sys/param.h>
 
 typedef struct {
@@ -74,7 +68,7 @@ Range parse_range(Lex *lex) {
   return r;
 }
 
-int64_t part1(StringBuilder input) {
+int64_t solve_part1(StringBuilder input) {
   Lex lex = {
       .input = input.items,
       .size = input.count,
@@ -98,7 +92,7 @@ int64_t part1(StringBuilder input) {
   return count;
 }
 
-int64_t part2(StringBuilder input) {
+int64_t solve_part2(StringBuilder input) {
   Lex lex = {
       .input = input.items,
       .size = input.count,
@@ -119,12 +113,4 @@ int64_t part2(StringBuilder input) {
   da_free(ranges);
   da_free(merged);
   return count;
-}
-
-int main() {
-  StringBuilder input = {0};
-  read_file("inputs/day5.txt", &input);
-  println("part1 => %" PRId64, part1(input));
-  println("part2 => %" PRId64, part2(input));
-  return 0;
 }
