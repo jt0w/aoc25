@@ -1,9 +1,8 @@
 #include "solution.h"
 
-static int ROW_SIZE = -1;
-
 int64_t solve_part1(StringBuilder input) {
-  assert(ROW_SIZE > 0);
+  size_t row_size = get_row_size(input);
+  assert(row_size > 0);
   int64_t count = 0;
   for (int i = 0; i < (int)input.count; ++i) {
     if (input.items[i] == '\n')
@@ -16,9 +15,9 @@ int64_t solve_part1(StringBuilder input) {
         for (int dy = -1; dy <= 1; ++dy) {
           if (dx == 0 && dy == 0)
             continue;
-          if (i + dx + ROW_SIZE * dy < 0 || i + dx + ROW_SIZE * dy >= (int)input.count)
+          if (i + dx + row_size * dy < 0 || i + dx + row_size * dy >= (int)input.count)
             continue;
-          if (input.items[i + dx + (ROW_SIZE * dy)] == '@')
+          if (input.items[i + dx + (row_size * dy)] == '@')
             roll_counter++;
         }
       }
@@ -42,7 +41,7 @@ bool can_remove(StringBuilder input) {
         for (int dy = -1; dy <= 1; ++dy) {
           if (dx == 0 && dy == 0)
             continue;
-          int index = i + dx + ROW_SIZE * dy;
+          int index = i + dx + get_row_size(input) * dy;
           if (index < 0 || index >= (int)input.count)
             continue;
           if (input.items[index] == '@') {
@@ -59,7 +58,8 @@ bool can_remove(StringBuilder input) {
 }
 
 int64_t solve_part2(StringBuilder input) {
-  assert(ROW_SIZE > 0);
+  size_t row_size = get_row_size(input);
+  assert(row_size > 0);
 
   StringBuilder this = input;
 
@@ -81,7 +81,7 @@ int64_t solve_part2(StringBuilder input) {
           for (int dy = -1; dy <= 1; ++dy) {
             if (dx == 0 && dy == 0)
               continue;
-            int index = i + dx + ROW_SIZE * dy;
+            int index = i + dx + row_size * dy;
             if (index < 0 || index >= (int)this.count)
               continue;
             if (this.items[index] == '@') {

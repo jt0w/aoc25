@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1764675594,
-        "narHash": "sha256-DcA9hgWJ9xfvBNr+YlQZMmxMiMQXQ5jRzIplLBbr3Zg=",
+        "lastModified": 1765118271,
+        "narHash": "sha256-nQ4J7TcxqlpNgTpzWZ/llr3Daiz8vTNB5CiuVqMH8lk=",
         "owner": "jt0w",
         "repo": "chimera",
-        "rev": "fcfc76844cf533caa7508436be20f236e54b6719",
+        "rev": "ffe94934e8015f23fc455f318d12b83ee8788179",
         "type": "github"
       },
       "original": {
